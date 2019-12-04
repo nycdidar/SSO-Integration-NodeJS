@@ -1,0 +1,37 @@
+# SSO Integration docker-compose.yml
+version: '3.4'
+services:
+  rockcms_idp:
+    container_name: rockcms_idp
+    image: kristophjunge/test-saml-idp
+    networks:
+      - rock-be
+    ports:
+      - '8080:8080/tcp'
+      - '8443:8443/tcp'
+    environment:
+      - SIMPLESAMLPHP_SP_ENTITY_ID=saml-poc
+      - SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE=https://localhost:4300/sso/callback 
+    volumes:
+      - ./samlconfig:/var/www/simplesamlphp/config/
+      - ./:/app
+  example_sso:
+    container_name: example_sso
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - rock-be
+    command: >
+      /bin/bash -c "
+        echo '############'
+        npm run dev
+      "
+    ports:
+      - '5000:5000/tcp'
+      - '4300:4300/tcp'
+    environment:
+      - NODE_ENV=development
+networks:
+  rock-be:
+    driver: bridge
