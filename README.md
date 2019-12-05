@@ -5,7 +5,7 @@ SSO Integration in NodeJS using Passport
 https://localhost:4300/login
 
 #### IDP Credential
-##### https://github.com/nycdidar/SSO-Integration-NodeJS/blob/master/samlconfig/authsources.php
+##### /samlconfig/authsources.php
 User: test
 Password: test
 
