@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "passport": "^0.4.0",
-    "passport-saml": "^1.2.0",
+    "passport-saml": "^3.2.2",
     "jsonwebtoken": "^8.5.1",
     "cors": "^2.7.1",
     "babel-cli": "^6.9.0",
